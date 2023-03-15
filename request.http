@@ -1,0 +1,5 @@
+### Get info on Luke
+GET https://swapi.dev/api/people/1
+
+
+
