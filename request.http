@@ -1,5 +1,12 @@
 ### Get info on Luke
-GET https://swapi.dev/api/people/1
+# GET https://swapi.dev/api/people/1
 
+
+
+### Get info on most recent comic
+# GET https://xkcd.com/info.0.json
+
+### Get info on most current comic (through trial and error I found that there were 2749 comics
+GET https://xkcd.com/2749/info.0.json
 
 
