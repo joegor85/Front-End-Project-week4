@@ -15,17 +15,24 @@
   </head>
   <body>
     <header>
-      <h1>This is a page for you to search for xkcd comics!</h1>
+      <h1>This is a page for you to search for funny xkcd comics!</h1>
     </header>
-    <div>
-      <!-- <label for="search">Search here!</label>
-      <input type="text" /> -->
-      <button class="fetch">Fetch random comics from API!</button>
+    <div class="button">
+      <button class="fetch">Fetch random comics from an API!!!!!!!!!</button>
     </div>
     <div class="display">
-      <h2>Display random xkcd comic titles here!</h2>
+      <h2>Your randomly generated xkcd comic titles:</h2>
       <div id="comicTitleContainer"></div>
       <div id="comicContainer""></div>
+    </div>
+    <div class="input">
+      <h4>If you want to add a favorite to your list, input the comic number here:</h4>
+        <input type="text" maxlength="5">
+        <button class="favButton">Add to Favorites!</button>
+    </div>
+    <div id="favoriteContainer">
+        <h3 class="favorites">These are your favorites!</h3>
+        </div>
     </div>
   </body>
 </html>

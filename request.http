@@ -6,7 +6,8 @@
 ### Get info on most recent comic
 # GET https://xkcd.com/info.0.json
 
-### Get info on most current comic (through trial and error I found that there were 2749 comics
+### Get info on most current comic (through trial and error I found that there were 2749 comics. This API works here but has a CORS error we could not resolve in the javascript.
 GET https://xkcd.com/2749/info.0.json
 
-
+### Get data on comic200 using new API. This one works in the javascript.
+GET https://xkcd.vercel.app/?comic=200
