@@ -12,27 +12,31 @@
       crossorigin="anonymous"
     ></script>
     <title>Joe's XKCD fronted project</title>
+    <link rel="icon" href="xkcdprojectimage.png">
   </head>
   <body>
     <header>
-      <h1>This is a page for you to search for funny xkcd comics!</h1>
+      <h1>This is a place for you to search for funny xkcd comics!</h1>
     </header>
     <div class="button">
-      <button class="fetch">Fetch random comics from an API!!!!!!!!!</button>
+      <button class="fetch">Fetch random xkcd comics!!!</button>
     </div>
+    <h2>Your randomly generated xkcd comic titles: (hint: click on a title)</h2>
     <div class="display">
-      <h2>Your randomly generated xkcd comic titles:</h2>
       <div id="comicTitleContainer"></div>
       <div id="comicContainer""></div>
     </div>
+    <div id="comicDataContainer"></div>
     <div class="input">
-      <h4>If you want to add a favorite to your list, input the comic number here:</h4>
-        <input type="text" maxlength="5">
+      <h3>If you want to add a favorite to your list, input the comic number here:</h3>
+        <input type="text" maxlength="4">
         <button class="favButton">Add to Favorites!</button>
     </div>
     <div id="favoriteContainer">
-        <h3 class="favorites">These are your favorites!</h3>
+        <div class="favoriteTitleAndButton">
+          <h3 class="favorites">These are your favorites!</h3>
+          <button class="urlButton">Collect links!</button>
         </div>
-    </div>
+     </div>
   </body>
 </html>
