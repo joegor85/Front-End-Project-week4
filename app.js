@@ -124,6 +124,8 @@ function getUserFavorite() {
     alert(
       "As of the creation of this website, there are only 2750 xkcd comics..."
     );
+  } else if (userInput.value < 1) {
+    alert("Uhhh, you have to put in a number. And it has to be at least 1.");
   } else {
     // Create the HTML elements we need and put the fav data into them
     let eachFav = document.createElement("div");
