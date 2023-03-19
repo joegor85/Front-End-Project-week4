@@ -106,11 +106,15 @@ function convertToMonth(month) {
   }
 }
 //------------------------FAVORITES--------------------------//
+// Access local storage for later
+const myLocalStorage = window.localStorage;
 // Make a container array to store our favorite data
 let userFavorites = [];
+// and an object for putting that array into for local storage
+let storageObject = {};
 // On user input, pull the comic from the API and display in favorites.
 const favButton = document.querySelector(".favButton");
-let userInput = document.querySelector("input");
+let userPlusInput = document.querySelector(".plusInput");
 favButton.addEventListener("click", (e) => {
   // Run a function that grabs the favorite comic and adds it to the favorite container
   getUserFavorite();
@@ -118,19 +122,21 @@ favButton.addEventListener("click", (e) => {
 
 // Define the function to grab user's favorite
 function getUserFavorite() {
-  console.log(userInput.value);
+  let tempStorage = JSON.parse(myLocalStorage.getItem("userData"));
+  userFavorites = tempStorage.user;
+  console.log(userPlusInput.value);
   // Since there are only 2750 comics(as of now), best to limit the input with an alert message
-  if (userInput.value > 2750) {
+  if (userPlusInput.value > 2750) {
     alert(
       "As of the creation of this website, there are only 2750 xkcd comics..."
     );
-  } else if (userInput.value < 1) {
+  } else if (userPlusInput.value < 1) {
     alert("Uhhh, you have to put in a number. And it has to be at least 1.");
   } else {
     // Create the HTML elements we need and put the fav data into them
     let eachFav = document.createElement("div");
     eachFav.classList = "eachFav";
-    $.get(`https://xkcd.vercel.app/?comic=${userInput.value}`, (data) => {
+    $.get(`https://xkcd.vercel.app/?comic=${userPlusInput.value}`, (data) => {
       let favTitle = document.createElement("div");
       favTitle.innerHTML =
         data.title +
@@ -155,7 +161,19 @@ function getUserFavorite() {
       favoriteContainer.append(eachFav);
       // Collect # and URL data on favorites for display later
       let combined = "#" + data.num + " " + data.img;
-      userFavorites.push(combined);
+      let indexToAdd = -1; // if it is already on the fav list, don't add it
+      for (i = 0; i < userFavorites.length; i++) {
+        if (userFavorites[i] === combined) {
+          indexToAdd = 1;
+          break;
+        }
+      }
+      if (indexToAdd === -1) {
+        userFavorites.push(combined);
+        storageObject.user = userFavorites;
+        myLocalStorage.setItem("userData", JSON.stringify(storageObject));
+      }
+      console.log(JSON.parse(myLocalStorage.getItem("userData")));
     });
   }
 }
@@ -163,5 +181,54 @@ function getUserFavorite() {
 // Add an event listener so when user clicks on "get links" button it provides them with direct links to their favorites
 const urlButton = document.querySelector(".urlButton");
 urlButton.addEventListener("click", (e) => {
-  alert(userFavorites.join("                      "));
+  //alert(userFavorites.join("                      "));
+  let retrievedData = JSON.parse(myLocalStorage.getItem("userData"));
+  alert(retrievedData["user"]);
+  console.log(retrievedData);
 });
+
+//-------------------------------------------------------------
+// Learning how to use Local Storage (this variable is added above at the bottom of "getUserFavorite()" function)
+console.log(window.localStorage);
+
+// Adding "Remove this favorite" button and input
+const removeFavButton = document.querySelector(".removeFav");
+let userMinusInput = document.querySelector(".minusInput");
+removeFavButton.addEventListener("click", (e) => {
+  // Run a function that grabs the favorite comic and adds it to the favorite container
+  if (userMinusInput.value > 2750) {
+    alert(
+      "As of the creation of this website, there are only 2750 xkcd comics..."
+    );
+  } else if (userMinusInput.value < 1) {
+    alert("Uhhh, you have to put in a number. And it has to be at least 1.");
+  } else {
+    removeUserFavorite();
+  }
+});
+
+// Define the function to use above
+function removeUserFavorite() {
+  let retrievedData = JSON.parse(myLocalStorage.getItem("userData"));
+  let userNumber = "#" + userMinusInput.value; //get user input and format it
+  let indexToRemove = -1; //Initialize index to remove as not found
+  // Loop through data to find an index to remove
+  for (let i = 0; i < retrievedData.user.length; i++) {
+    if (retrievedData.user[i].includes(userNumber)) {
+      indexToRemove = i;
+      break; //exit loop once we find item
+      // retrievedData.user.splice(i, 1);
+      // storageObject === retrievedData;
+      // userFavorites === storageObject.user;
+    }
+  }
+  // if the item was found, remove it and update local storage
+  if (indexToRemove !== -1) {
+    retrievedData.user.splice(indexToRemove, 1);
+    myLocalStorage.setItem("userData", JSON.stringify(retrievedData));
+    storageObject === retrievedData;
+    console.log(JSON.parse(myLocalStorage.getItem("userData")));
+  } else {
+    alert("This comic is not currently in your favorites");
+  }
+}

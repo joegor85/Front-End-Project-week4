@@ -28,14 +28,22 @@
     </div>
     <div id="comicDataContainer"></div>
     <div class="input">
-      <h3>If you want to add a favorite to your list, input the comic number here:</h3>
-        <input type="text" maxlength="4">
+      <h3>If you want to add or remove a favorite to or from your list, input the comic number here:</h3>
+      <div class="favoriteButtons">
+        <input class="plusInput" type="text" maxlength="4" placeholder="0000">
         <button class="favButton">Add to Favorites!</button>
+        <input class="minusInput" type="text" maxlength="4" placeholder="0000">
+        <button class="removeFav">Remove this favorite</button>
+      </div>
     </div>
     <div id="favoriteContainer">
         <div class="favoriteTitleAndButton">
           <h3 class="favorites">These are your favorites!</h3>
+          <div class="favoriteButtons">
           <button class="urlButton">Collect links!</button>
+          <button class="reloadFavorites">Reload Stored Favorites</button>
+          <button class="clearButton">Clear All Stored Favorites</button>
+          </div>
         </div>
      </div>
   </body>

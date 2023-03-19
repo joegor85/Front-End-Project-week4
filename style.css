@@ -61,13 +61,19 @@ button {
 }
 .fetch:hover,
 .favButton:hover,
-.urlButton:hover {
+.urlButton:hover,
+.removeFav:hover,
+.reloadFavorites:hover,
+.clearButton:hover {
   box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
   transform: translate3d(0, 2px, 0);
 }
 .fetch:focus,
 .favButton:focus,
-.urlButton:focus {
+.urlButton:focus,
+.removeFav:focus,
+.reloadFavorites:focus,
+.clearButton:focus {
   box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 4px -6px;
 }
 h2 {
@@ -118,6 +124,7 @@ h2 {
   text-align: center;
   padding: 10px;
   border: 3px solid black;
+  padding-bottom: 20px;
 }
 input {
   cursor: text;
@@ -150,6 +157,7 @@ input {
   touch-action: manipulation;
   width: 103px;
   height: 50px;
+  translate: 25px;
 }
 .selected {
   font-weight: bold;
@@ -177,6 +185,13 @@ input {
   padding-top: 20px;
   padding-bottom: 20px;
 }
-.urlButton {
+.urlButton,
+.reloadFavorites,
+.clearButton {
   margin-bottom: 20px;
+}
+.favoriteButtons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
