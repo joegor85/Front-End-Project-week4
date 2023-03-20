@@ -122,8 +122,11 @@ favButton.addEventListener("click", (e) => {
 
 // Define the function to grab user's favorite
 function getUserFavorite() {
-  let tempStorage = JSON.parse(myLocalStorage.getItem("userData"));
-  userFavorites = tempStorage.user;
+  if (myLocalStorage.length !== 0) {
+    let tempStorage = JSON.parse(myLocalStorage.getItem("userData"));
+    userFavorites = tempStorage.user;
+  }
+  // Log the user input
   console.log(userPlusInput.value);
   // Since there are only 2750 comics(as of now), best to limit the input with an alert message
   if (userPlusInput.value > 2750) {
@@ -181,7 +184,10 @@ function getUserFavorite() {
 // Add an event listener so when user clicks on "get links" button it provides them with direct links to their favorites
 const urlButton = document.querySelector(".urlButton");
 urlButton.addEventListener("click", (e) => {
-  //alert(userFavorites.join("                      "));
+  //alert(userFavorites.join("                      ")); // old way before I used local storage
+  if (JSON.parse(myLocalStorage.getItem("userData")) == null) {
+    alert("There are no favorites stored!");
+  }
   let retrievedData = JSON.parse(myLocalStorage.getItem("userData"));
   alert(retrievedData["user"]);
   console.log(retrievedData);
@@ -217,9 +223,6 @@ function removeUserFavorite() {
     if (retrievedData.user[i].includes(userNumber)) {
       indexToRemove = i;
       break; //exit loop once we find item
-      // retrievedData.user.splice(i, 1);
-      // storageObject === retrievedData;
-      // userFavorites === storageObject.user;
     }
   }
   // if the item was found, remove it and update local storage
@@ -229,6 +232,31 @@ function removeUserFavorite() {
     storageObject === retrievedData;
     console.log(JSON.parse(myLocalStorage.getItem("userData")));
   } else {
-    alert("This comic is not currently in your favorites");
+    alert("This comic is not currently in your favorites.");
   }
 }
+
+// Access "Clear all Stored Favorites Button"
+const clearEverything = document.querySelector(".clearButton");
+clearEverything.addEventListener("click", (e) => {
+  // Run a function that clears favorites everywhere;
+  clearAllFavorites();
+});
+
+// define the function to clear everything
+function clearAllFavorites() {
+  // clear the local storage
+  myLocalStorage.clear();
+  // clear the userFavorites array
+  userFavorites = [];
+  // clear the storageObject object
+  for (let key in storageObject) {
+    delete storageObject[key];
+  }
+  $(".eachFav").remove();
+  alert("You have cleared all favorites everywhere.");
+}
+
+
+
+// Reload Stored Favorites
