@@ -142,6 +142,9 @@ function getUserFavorite() {
     $.get(`https://xkcd.vercel.app/?comic=${userPlusInput.value}`, (data) => {
       let favTitle = document.createElement("div");
       favTitle.innerHTML =
+        "#" +
+        data.num +
+        "&nbsp &nbsp &nbsp &nbsp" +
         data.title +
         "&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp(" +
         convertToMonth(data.month) +
@@ -257,6 +260,57 @@ function clearAllFavorites() {
   alert("You have cleared all favorites everywhere.");
 }
 
+// Reload Stored Favorites to the page
+const reloadStoredFavs = document.querySelector(".reloadFavorites");
+reloadStoredFavs.addEventListener("click", (e) => {
+  // Run a function that clears favorites everywhere;
+  reloadFavsToPage();
+});
 
-
-// Reload Stored Favorites
+// define function to clear displayed favs and load stored ones
+function reloadFavsToPage() {
+  if ($(".eachFav") != null) {
+    $(".eachFav").remove();
+  }
+  let tempStorage = JSON.parse(myLocalStorage.getItem("userData"));
+  if (tempStorage == null) {
+    alert("There are no favorites stored!");
+  } else {
+    for (i = 0; i < tempStorage.user.length; i++) {
+      let splitFav = tempStorage.user[i].split(" ");
+      console.log(splitFav);
+      let favNum = splitFav[0];
+      let extractedFavNum = favNum.slice(1, favNum.length);
+      //let favActualNum = parseInt(favNum);
+      let eachFav = document.createElement("div");
+      eachFav.classList = "eachFav";
+      $.get(`https://xkcd.vercel.app/?comic=${extractedFavNum}`, (data) => {
+        let favTitle = document.createElement("div");
+        favTitle.innerHTML =
+          "#" +
+          data.num +
+          "&nbsp &nbsp &nbsp &nbsp" +
+          data.title +
+          "&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp(" +
+          convertToMonth(data.month) +
+          " " +
+          data.day +
+          ", " +
+          data.year +
+          ")";
+        favTitle.classList = "favTitle";
+        let favComicImage = document.createElement("img");
+        favComicImage.classList = "favComic";
+        favComicImage.src = data.img;
+        let favDesc = document.createElement("div");
+        favDesc.innerText = data.alt;
+        favDesc.classList = "favDesc";
+        eachFav.append(favTitle);
+        eachFav.append(favComicImage);
+        eachFav.append(favDesc);
+        let favoriteContainer = document.getElementById("favoriteContainer");
+        favoriteContainer.append(eachFav);
+      });
+    }
+  }
+}
