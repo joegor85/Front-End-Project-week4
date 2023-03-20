@@ -6,11 +6,11 @@ The goal of this project was to practice pulling data from API's and building an
 
 ## Library used:
 
-\*jQuery
+jQuery
 
 ## API used:
 
-\*xkcd comics (https://xkcd.vercel.app/)
+xkcd comics (https://xkcd.vercel.app/)
 
 ## What this application does:
 
@@ -20,7 +20,9 @@ To begin, just click on the top button ("Fetch random xkd comics!!!"). This will
 
 Click on a title to get a preview of that particular comic with some other information about ithe comic and when it was made. If you like that particular one, you can paste its number (found in the description below the comic) into the "Add to favorites" input box. Click "Add to Favorites" to add it to the display at the bottom.
 
-Once you have a collection of your favorites, click the "Collect links!" button to view the comic number and it's url. You can bookmark these URL's for later use on your device or you can share with a friend if you wish.
+Once you have a collection of your favorites, click the "Collect links!" button to view the comic number and its url. You can bookmark these URL's for later use on your device or you can share with a friend if you wish.
+
+You can also remove favorites from your list. Also, this data is now stored in local storage across browser sessions. You can come back to this page later and reload your favorites! You can also clear out your favorites and start fresh.
 
 ### Other notes
 
