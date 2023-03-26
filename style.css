@@ -87,6 +87,13 @@ h2 {
   position: relative;
   min-height: 412px;
 }
+
+/* @media screen and (max-width: 500px) {
+  .display {
+    flex-direction: column;
+  }
+} */
+
 #comicTitleContainer {
   border-bottom: 4px solid gray;
   border-right: 4px solid gray;
@@ -195,3 +202,124 @@ input {
   justify-content: space-evenly;
   align-items: center;
 }
+
+/* ------------------------------------------------------------------------------------------- */
+/* Out of pure curiosity, here is a ChatGPT-generated css file. Not nearly as good as mine: */
+/*
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title {
+  cursor: pointer;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+.title:hover {
+  background-color: #e8e8e8;
+}
+
+.selected {
+  background-color: #4caf50 !important;
+  color: #fff;
+}
+
+#comicTitleContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#comicTitleContainer .title {
+  flex-basis: calc(20% - 20px);
+}
+
+#comicContainer {
+  max-width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+#comicDataContainer {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f4f4f4;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.fetch,
+.favButton {
+  display: block;
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.fetch:hover,
+.favButton:hover {
+  background-color: #3e8e41;
+}
+
+.inputContainer {
+  display: flex;
+  margin-top: 20px;
+}
+
+.plusInput {
+  flex-grow: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.favButton {
+  margin-left: 10px;
+  flex-basis: 150px;
+}
+
+@media only screen and (max-width: 768px) {
+  #comicTitleContainer .title {
+    flex-basis: calc(50% - 20px);
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #comicTitleContainer .title {
+    flex-basis: 100%;
+  }
+
+  .inputContainer {
+    flex-direction: column;
+  }
+
+  .plusInput {
+    margin-bottom: 10px;
+  }
+
+  .favButton {
+    margin-left: 0;
+  }
+}
+*/
