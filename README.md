@@ -26,4 +26,4 @@ You can also remove favorites from your list. Also, this data is now stored in l
 
 ### Other notes
 
-I originally wanted to do a jobsearch project but could not find a good user-friendly API for it. Most job posting API's required tokens and such. I decided on an xkcd API and even ran into CORS errors that I could not solve with the first one. I was able to find another one that worked well though.
+It was tricky to find a user-friendly API for this project that did not require tokens or cors restrictions. I decided on an xkcd API and I ran into CORS errors that I could not solve with help of others. I was able to find another one that worked well though.
